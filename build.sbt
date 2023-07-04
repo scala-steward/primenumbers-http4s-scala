@@ -1,8 +1,8 @@
-val Http4sVersion                  = "1.0.0-M35"
-val Specs2Version                  = "5.0.7"
+val Http4sVersion = "1.0.0-M35"
+val Specs2Version = "5.0.7"
 val CatsEffectTestingSpecs2Version = "1.5.0"
-val LogbackVersion                 = "1.4.5"
-val JAnsiVersion                   = "1.18"
+val LogbackVersion = "1.4.5"
+val JAnsiVersion = "1.18"
 
 lazy val root = (project in file("."))
   .settings(
@@ -11,13 +11,13 @@ lazy val root = (project in file("."))
     version := "0.0.4-SNAPSHOT",
     scalaVersion := "3.2.1",
     libraryDependencies ++= Seq(
-      "org.http4s"           %% "http4s-blaze-server"        % Http4sVersion,
-      "org.http4s"           %% "http4s-blaze-client"        % Http4sVersion,
-      "org.http4s"           %% "http4s-dsl"                 % Http4sVersion,
-      "org.http4s"           %% "http4s-scala-xml"           % Http4sVersion,
-      "ch.qos.logback"       %  "logback-classic"            % LogbackVersion,
-      "org.fusesource.jansi" %  "jansi"                      % JAnsiVersion,
-      "org.typelevel"        %% "cats-effect-testing-specs2" % CatsEffectTestingSpecs2Version % Test
+      "org.http4s" %% "http4s-blaze-server" % Http4sVersion,
+      "org.http4s" %% "http4s-blaze-client" % Http4sVersion,
+      "org.http4s" %% "http4s-dsl" % Http4sVersion,
+      "org.http4s" %% "http4s-scala-xml" % Http4sVersion,
+      "ch.qos.logback" % "logback-classic" % LogbackVersion,
+      "org.fusesource.jansi" % "jansi" % JAnsiVersion,
+      "org.typelevel" %% "cats-effect-testing-specs2" % CatsEffectTestingSpecs2Version % Test
     ),
     scalacOptions ++= Seq(
       "-deprecation",
@@ -35,12 +35,13 @@ assembly / mainClass := Some("edu.luc.etl.cs433.laufer.primenumbers.Main")
 enablePlugins(JavaAppPackaging)
 
 assembly / assemblyMergeStrategy := {
-  case "module-info.class" => MergeStrategy.discard
+  case "module-info.class"                          => MergeStrategy.discard
   case manifest if manifest.contains("MANIFEST.MF") =>
     // We don't need manifest files since sbt-assembly will create
     // one with the given settings
     MergeStrategy.discard
-  case referenceOverrides if referenceOverrides.contains("reference-overrides.conf") =>
+  case referenceOverrides
+      if referenceOverrides.contains("reference-overrides.conf") =>
     // Keep the content for all reference-overrides.conf files
     MergeStrategy.concat
   case x =>

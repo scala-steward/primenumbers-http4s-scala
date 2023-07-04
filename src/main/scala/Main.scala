@@ -8,7 +8,9 @@ val DEFAULT_PORT = "8080"
 
 object Main extends IOApp:
   def run(args: List[String]): IO[ExitCode] =
-    val port = sys.props.getOrElse("server.port", sys.env.getOrElse("PORT", DEFAULT_PORT)).toInt
+    val port = sys.props
+      .getOrElse("server.port", sys.env.getOrElse("PORT", DEFAULT_PORT))
+      .toInt
     BlazeServerBuilder[IO]
       .bindHttp(port, "0.0.0.0")
       .withHttpApp(PrimeCheckerApp.app)
