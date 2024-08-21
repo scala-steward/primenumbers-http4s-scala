@@ -11,16 +11,17 @@ import org.specs2.matcher.{DataTables, MatchResult}
 class PrimeCheckerSpec extends Specification with DataTables with CatsEffect:
 
   "PrimeChecker method works for values in table" >> (
-    primeTable |> (
-      (number, result) =>
-        PrimeChecker.isPrime(BigInt(number)) must_== result
+    primeTable |> ((number, result) =>
+      PrimeChecker.isPrime(BigInt(number)) must_== result
     )
   )
 
   "PrimeChecker service works for values in table" >> (
-    primeTable |> (
-      (number, result) =>
-        serviceReturnsStatus(number, if result then Status.Ok else Status.NotFound)
+    primeTable |> ((number, result) =>
+      serviceReturnsStatus(
+        number,
+        if result then Status.Ok else Status.NotFound
+      )
     )
   )
 
@@ -59,7 +60,10 @@ class PrimeCheckerSpec extends Specification with DataTables with CatsEffect:
     val getPC = Request[IO](Method.GET, uri"/" / s"$i")
     PrimeCheckerApp.app(getPC).unsafeRunSync()
 
-  private[this] def serviceReturnsStatus(i: Int, s: Status): MatchResult[Status] =
+  private[this] def serviceReturnsStatus(
+      i: Int,
+      s: Status
+  ): MatchResult[Status] =
     retPrimeChecker(i).status must beEqualTo(s)
 
 end PrimeCheckerSpec

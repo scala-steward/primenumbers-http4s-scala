@@ -29,8 +29,7 @@ object PrimeCheckerApp:
     case GET -> Root / LongVar(number) =>
       if PrimeChecker.isPrime(BigInt(number)) then
         Ok(s"Yay, $number happens to be a prime!")
-      else
-        NotFound(s"Bummer, $number is not a prime.")
+      else NotFound(s"Bummer, $number is not a prime.")
 
   val app: HttpApp[IO] = routes.orNotFound
 end PrimeCheckerApp
