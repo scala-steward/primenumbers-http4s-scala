@@ -1,9 +1,9 @@
-val Http4sVersion                  = "1.0.0-M38"
-val Http4sScalaXmlVersion          = Http4sVersion + ".1"
-val Specs2Version                  = "5.0.7"
+val Http4sVersion = "1.0.0-M38"
+val Http4sScalaXmlVersion = Http4sVersion + ".1"
+val Specs2Version = "5.0.7"
 val CatsEffectTestingSpecs2Version = "1.7.0"
-val LogbackVersion                 = "1.5.18"
-val JAnsiVersion                   = "2.4.2"
+val LogbackVersion = "1.5.38"
+val JAnsiVersion = "2.4.2"
 
 lazy val root = (project in file("."))
   .settings(
@@ -12,13 +12,13 @@ lazy val root = (project in file("."))
     version := "0.0.4-SNAPSHOT",
     scalaVersion := "3.7.3",
     libraryDependencies ++= Seq(
-      "org.http4s"           %% "http4s-blaze-server"        % Http4sVersion,
-      "org.http4s"           %% "http4s-blaze-client"        % Http4sVersion,
-      "org.http4s"           %% "http4s-dsl"                 % Http4sVersion,
-      "org.http4s"           %% "http4s-scala-xml"           % Http4sScalaXmlVersion,
-      "ch.qos.logback"       %  "logback-classic"            % LogbackVersion,
-      "org.fusesource.jansi" %  "jansi"                      % JAnsiVersion,
-      "org.typelevel"        %% "cats-effect-testing-specs2" % CatsEffectTestingSpecs2Version % Test
+      "org.http4s" %% "http4s-blaze-server" % Http4sVersion,
+      "org.http4s" %% "http4s-blaze-client" % Http4sVersion,
+      "org.http4s" %% "http4s-dsl" % Http4sVersion,
+      "org.http4s" %% "http4s-scala-xml" % Http4sScalaXmlVersion,
+      "ch.qos.logback" % "logback-classic" % LogbackVersion,
+      "org.fusesource.jansi" % "jansi" % JAnsiVersion,
+      "org.typelevel" %% "cats-effect-testing-specs2" % CatsEffectTestingSpecs2Version % Test
     ),
     scalacOptions ++= Seq(
       "-deprecation",
